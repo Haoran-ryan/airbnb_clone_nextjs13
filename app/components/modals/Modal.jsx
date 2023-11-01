@@ -14,7 +14,7 @@ const Modal = ({
     actionLabel,
     disabled,
     secondaryAction,
-    secondaryLabel,
+    secondaryActionLabel,
                }) => {
 
     const [showModal, setShowModal] = useState(isOpen);
@@ -160,8 +160,15 @@ const Modal = ({
                                     '
                                 >
                                     <Button
-                                        icon={IoMdClose}
-                                        label='My Button'
+                                        disabled={disabled}
+                                        label={secondaryActionLabel}
+                                        onClick={handleSubmit}
+                                    />
+
+                                    <Button
+                                        disabled={disabled}
+                                        label={actionLabel}
+                                        onClick={handleSubmit}
                                     />
 
                                 </div>
