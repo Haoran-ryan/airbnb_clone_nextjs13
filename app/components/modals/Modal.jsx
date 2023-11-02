@@ -159,12 +159,15 @@ const Modal = ({
                                         w-full
                                     '
                                 >
-                                    <Button
+                                    {secondaryAction && secondaryActionLabel && (
+                                        <Button
+                                        outline
                                         disabled={disabled}
                                         label={secondaryActionLabel}
-                                        onClick={handleSubmit}
+                                        onClick={handleSecondaryAction}
                                     />
-
+                                    )}
+                                    
                                     <Button
                                         disabled={disabled}
                                         label={actionLabel}

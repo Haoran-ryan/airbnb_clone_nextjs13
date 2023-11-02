@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
             isOpen={true}
             title="Modal Title"
             body="Modal Body"
+            actionLabel='Save'
 
         />
         <Navbar />
