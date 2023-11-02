@@ -12,7 +12,7 @@ const Modal = ({
     body,
     footer,
     actionLabel,
-    disabled,
+    disabled, // meaning the parent component is loading, no operation is allowed
     secondaryAction,
     secondaryActionLabel,
                }) => {
