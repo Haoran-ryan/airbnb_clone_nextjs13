@@ -1,11 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import Container from "@/app/components/Container";
 import Logo from "@/app/components/navbar/Logo";
 import Search from "@/app/components/navbar/Search";
 import UserMenu from "@/app/components/navbar/UserMenu";
-const Navbar = () => {
+const Navbar = ({ currentUser }) => {
+    useEffect(() => {
+        console.log('NAVBAR current user', currentUser)
+    }, [currentUser]);
     return (
         <div className='fixed w-full bg-white z-10 shadow-sm'>
             <div
