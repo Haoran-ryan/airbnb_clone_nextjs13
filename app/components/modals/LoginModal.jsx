@@ -30,7 +30,7 @@ const LoginModal = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        defaultValues:{
+        defaultValues:{ // the defaulValues are only for readability 
             email:'',
             password:'',
         }
