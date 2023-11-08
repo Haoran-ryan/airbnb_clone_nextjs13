@@ -5,10 +5,12 @@ import Avatar from "@/app/components/Avatar";
 import MenuItem from "@/app/components/navbar/MenuItem";
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import useRentModal from '@/app/hooks/useRentModal';
 
-const UserMenu = () => {
+const UserMenu = ({ currentUser }) => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+    const rentModal = useRentModal();
 
     const [isOpen, setIsOpen] = useState(false)
     
@@ -19,6 +21,13 @@ const UserMenu = () => {
         [],
     );
 
+    const onRent = useCallback(()=>{
+        if(!currentUser){
+            return loginModal.onOpen();
+        }
+        // open rent modal 
+        rentModal.onOpen();
+    },[currentUser, loginModal, rentModal])
     return (
         <div
             className='relative'
@@ -32,7 +41,7 @@ const UserMenu = () => {
                 '
             >
                 <div
-                    onClick={() => {}}
+                    onClick={ onRent }
                     className='
                         hidden
                         md:block
@@ -68,7 +77,7 @@ const UserMenu = () => {
                 >
                     <AiOutlineMenu />
                     <div className='hidden md:block'>
-                        <Avatar />
+                        <Avatar src={currentUser?.image} />
                     </div>
                 </div>
             </div>
@@ -88,20 +97,48 @@ const UserMenu = () => {
 
                     '
                 >
-                    <div
-                        className='flex flex-col cursor-pointer'
-                    >
-                        <>
-                            <MenuItem
+                <div className="flex flex-col cursor-pointer">
+                            {currentUser ? (
+                            <>
+                                <MenuItem 
+                                label="My trips" 
+                                onClick={() => router.push('/trips')}
+                                />
+                                <MenuItem 
+                                label="My favorites" 
+                                onClick={() => router.push('/favorites')}
+                                />
+                                <MenuItem 
+                                label="My reservations" 
+                                onClick={() => router.push('/reservations')}
+                                />
+                                <MenuItem 
+                                label="My properties" 
+                                onClick={() => router.push('/properties')}
+                                />
+                                <MenuItem 
+                                label="Airbnb your home" 
+                                onClick={() => {}}
+                                />
+                                <hr />
+                                <MenuItem 
+                                label="Logout" 
+                                onClick={ rentModal.onOpen}
+                                />
+                            </>
+                            ) : (
+                            <>
+                                <MenuItem 
+                                label="Login" 
                                 onClick={loginModal.onOpen}
-                                label='Login'
-                            />
-                            <MenuItem
+                                />
+                                <MenuItem 
+                                label="Sign up" 
                                 onClick={registerModal.onOpen}
-                                label='Sign Up'
-                            />
-                        </>
-                    </div>
+                                />
+                            </>
+                            )}
+                </div>
                 </div>
             )}
         </div>

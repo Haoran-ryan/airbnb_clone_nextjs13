@@ -30,7 +30,7 @@ const Navbar = ({ currentUser }) => {
                     ">
                         <Logo />
                         <Search />
-                        <UserMenu />
+                        <UserMenu currentUser={ currentUser }/>
                     </div>
 
 
