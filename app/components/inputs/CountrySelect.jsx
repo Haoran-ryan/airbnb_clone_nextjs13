@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import Select from 'react-select';
@@ -16,35 +16,40 @@ const CountrySelect = ({
         placeholder='Anywhere'
         isClearable
         options={ getAll() }
-        value = { value }
-        onChange={ (value) => console.log(value) && onChange(value) }
+        value={ value }
+        // Ensure onChange is called with the correct argument
+        onChange={(option) => {
+          console.log(option);
+          if (onChange && option) {
+            // If you expect a specific structure, you might want to validate it here
+            onChange(option);
+          }
+        }}
         formatOptionLabel={(option) => (
-          <div className="
-          flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center gap-3">
             <div>{option.flag}</div>
             <div>
-              {option.label} , 
+              {option.label},
               <span className="text-neutral-500 ml-1">
                 {option.region}
               </span>
             </div>
           </div>
         )}
-        className={{
+        classNames={{
           control: () => 'p-3 border-2',
           input: () => 'text-lg',
-          option: () => 'text-lg',
-
+          option: () => 'text-lg'
         }}
         theme={(theme) => ({
           ...theme,
-          borderRadius:6,
-          colors:{
+          borderRadius: 6,
+          colors: {
             ...theme.colors,
             primary: 'black',
             primary25: '#ffe4e6'
           }
-        }) }
+        })}
       />
     </div>
   )

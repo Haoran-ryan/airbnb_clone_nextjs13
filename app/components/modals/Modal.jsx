@@ -41,7 +41,7 @@ const Modal = ({
     },[disabled, onSubmit]);
 
     const handleSecondaryAction = useCallback(() => {
-        if(disabled || secondaryAction){
+        if(disabled || !secondaryAction){
             return;
         }
         secondaryAction();
