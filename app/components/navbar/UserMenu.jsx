@@ -1,5 +1,6 @@
 'use client'
 import { useState, useCallback } from 'react';
+import { signOut } from "next-auth/react";
 import {AiOutlineMenu} from "react-icons/ai";
 import Avatar from "@/app/components/Avatar";
 import MenuItem from "@/app/components/navbar/MenuItem";
@@ -123,7 +124,7 @@ const UserMenu = ({ currentUser }) => {
                                 <hr />
                                 <MenuItem 
                                 label="Logout" 
-                                onClick={ rentModal.onOpen}
+                                onClick={ () => signOut() }
                                 />
                             </>
                             ) : (
